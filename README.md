@@ -9,7 +9,7 @@ Then run
 
     $ pyenv install 3.4.1
 
-Now you have python 3.4.1 available through pyenv. 
+Now you have python 3.4.1 available through pyenv. Now install snakemake through pip3 or clone repository (see [install_snakemake](https://bitbucket.org/johanneskoester/snakemake/wiki/Documentation#markdown-header-installation))
 
 ### Running snakemake
 
