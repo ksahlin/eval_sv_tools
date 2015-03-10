@@ -5,4 +5,4 @@ To see a flowchart of the pipeline, run
 
 Current pipline:
 
-![Example](figures/dag.pdf)
+![Example](figures/dag.png)
