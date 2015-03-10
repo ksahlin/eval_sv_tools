@@ -9,6 +9,26 @@ import re
 import os
 
 
+###########
+# This creation of directories is just for testing 
+# we will have real paths to files and do not need tou create them.
+# remove this after the fist time you execute snakemake.
+# Here we create some initial file presenting the reads 
+# of some data set just to make this template work, 
+# read files should exist on UPPMAX anyway
+
+os.popen("mkdir -p /tmp/varsim")
+os.popen("touch /tmp/varsim/reads.fastq")
+os.popen("touch /tmp/varsim/ref.fasta")
+os.popen("touch /tmp/varsim/truth.vcf")
+os.popen("mkdir -p /tmp/other_dataset")
+os.popen("touch /tmp/other_dataset/reads.fastq")
+os.popen("touch /tmp/other_dataset/ref.fasta")
+os.popen("touch /tmp/other_dataset/truth.vcf")
+##############
+     
+
+
 def clever_out_to_VCF(csv_file):
     """
         This is a dummy function to illustrate that we can transform 
@@ -46,28 +66,6 @@ rule all:
         OUTBASE+"quality_table.tex"
 
 
-rule CREATE_DATA:
-    """
-        ##############################################
-        # This is just for temporary testing 
-        # remove this after the fist time you execute snakemake.
-        # Here we create some initial file presenting the reads 
-        # of some data set just to make this template work, 
-        # read files should exist on UPPMAX anyway
-    """
-    input:
-    output:
-    shell:
-        """
-        shell("mkdir -p /tmp/varsim")
-        shell("touch /tmp/varsim/reads.fastq")
-        shell("touch /tmp/varsim/ref.fasta")
-        shell("touch /tmp/varsim/truth.vcf")
-        shell("mkdir -p /tmp/other_dataset")
-        shell("touch /tmp/other_dataset/reads.fastq")
-        shell("touch /tmp/other_dataset/ref.fasta")
-        shell("touch /tmp/other_dataset/truth.vcf")
-        """
 
 rule process_VARSIM:
     """
@@ -84,8 +82,8 @@ rule process_VARSIM:
         # run shell commands
         shell("mkdir -p {output.folder}") 
         # or python
-        if not os.path.exists("{{output.folder}}"):
-            os.makedirs("{{output.folder}}")
+        if not os.path.exists(output.folder):
+            os.makedirs(output.folder)
 
 
 rule process_OTHER_DATASET:
@@ -103,8 +101,9 @@ rule process_OTHER_DATASET:
         # run shell commands
         shell("mkdir -p {output.folder}") 
         # or python
-        if not os.path.exists("{{output.folder}}"):
-            os.makedirs("{{output.folder}}")
+        print(output.folder)
+        if not os.path.exists(output.folder):
+            os.makedirs(output.folder)
 
 
 
