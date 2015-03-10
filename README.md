@@ -23,7 +23,7 @@ to activate python 3 in the current shell. Now run,
 
 This will create output
 
-![Example](figures/test)
+![Example](figures/test.png)
 
 To see a flowchart of the pipeline, run 
 
