@@ -63,6 +63,7 @@ rule all:
 rule ULYSSES:
     input: config["INBASE"]+"{dataset}/mapped.bam"
     output: config["OUTBASE"]+"{dataset}/{tool}.vcf" #expand(config["OUTBASE"]+"{dataset}/{tool}_{n}.vcf", n=config["ulysses_rules"]["n"])
+    log: config["OUTBASE"]+"{dataset}/{tool}.log"
     params: 
         runtime="15:00",
         memsize = "mem128GB",
@@ -80,11 +81,11 @@ rule ULYSSES:
         cutoffs = config["ulysses_rules"]["n"]
         base = config["OUTBASE"]
         for n in cutoffs:
-            shell("{python} {path}./ReadBAM.py {input} -n {n} -out {params.prefix}_{n}")
-            shell("{python} {path}./Ulysses.py -out {params.prefix}_{n} -vcf TRUE -n {n} ")
-            shell("mv {params.prefix}_{n}.vcf  {base}{dataset}/{tool}_{n}.vcf")
+            shell("{python} {path}./ReadBAM.py {input} -n {n} -out {params.prefix}_{n} >> {log} 2>&1")
+            shell("{python} {path}./Ulysses.py -out {params.prefix}_{n} -vcf TRUE -n {n} >> {log} 2>&1 ")
+            shell("mv {params.prefix}_{n}.vcf  {base}{wildcards.dataset}/{wildcards.tool}_{n}.vcf")
 
-        shell("{base}{dataset}/{tool}_2.vcf {output}")
+        shell("{base}{wildcards.dataset}/{wildcards.tool}_2.vcf {output}")
     # /proj/b2013072/private/svest_evaluation/tools_src/ulysses-ulysses-v1.0/./ReadBAM.py /proj/b2013072/private/svest_evaluation/data/test_svs/mapped.bam -n 2 -out /tmp/Ulysses
     #     shell("[PATH]./ReadBAM.py /proj/b2013169/private/data/structural_variation/test_svs/mapped.bam  -n 2 -out /tmp/Ulysses")
     #     shell("./Ulysses.py -vcf LIBNAME -typesv DEL -n 2")
