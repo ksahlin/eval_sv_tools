@@ -80,7 +80,7 @@ rule ULYSSES:
         cutoffs = config["ulysses_rules"]["n"]
         base = config["OUTBASE"]
         for n in cutoffs:
-            shell("[PATH]./ReadBAM.py {input} -n {n} -out {params.prefix}_{n}")
+            shell("{path}./ReadBAM.py {input} -n {n} -out {params.prefix}_{n}")
             shell("{path}./Ulysses.py -out {params.prefix}_{n} -vcf TRUE -n {n} ")
             shell("mv {params.prefix}_{n}.vcf  {base}{dataset}/{tool}_{n}.vcf")
 
