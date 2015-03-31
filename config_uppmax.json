@@ -1,0 +1,28 @@
+{
+
+	"DATASETS" : ["test_svs"],
+    "TOOLS" :["ulysses"],
+	"INBASE" : "/proj/b2013072/private/svest_evaluation/data/",
+	"OUTBASE" : "/proj/b2013072/private/svest_evaluation/output/",
+	"PYTHON2" : "python2.7",
+	"GNUTIME" : "/usr/bin/time -v", 
+
+	"ulysses_rules" : { 
+				"path" : "/proj/b2013072/private/svest_evaluation/tools_src/ulysses-ulysses-v1.0/",
+				"n" : ["2", "4"],
+				"prefix": "/tmp/"},
+    "SBATCH" : {
+            "ACCOUNT" : "b2013169",
+            "MAIL" : "kristoffer.sahlin@scilifelab.se",
+            "MAIL_TYPE" : "FAIL",
+            "test_svs" : { "partition" : "core", 
+                        "n" : "1", 
+                        "memsize" : "mem128GB",
+                        "ulyssus_time" : "15:00",
+                        "svest_time" : "30:00"
+                        }
+    },
+
+	"LOAD_PYTHON_ENV" : "pyenv global 2.7.6 system 3.4.1",
+
+}
