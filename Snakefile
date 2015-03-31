@@ -46,7 +46,7 @@ def evaluate_vcf(vcf_file,true_variants):
 # of the true variants in case they are not given
 
 rule all:
-    input: expand(config["OUTBASE"]+"{tool}.vcf", tool=config["TOOLS"])
+    input: expand(config["OUTBASE"]+"{dataset}/{tool}.vcf", dataset=config["DATASETS"], tool=config["TOOLS"])
     params: 
         runtime="15:00",
         memsize = "mem128GB",
