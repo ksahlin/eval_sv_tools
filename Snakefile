@@ -75,6 +75,7 @@ rule ULYSSES:
         prefix= config["ulysses_rules"]["prefix"]+"{dataset}"
 
     run:
+        python = config["PYTHON2"]
         path = config["ulysses_rules"]["path"]
         cutoffs = config["ulysses_rules"]["n"]
         base = config["OUTBASE"]

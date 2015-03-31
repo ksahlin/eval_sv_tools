@@ -1,7 +1,7 @@
 {
 
 	"DATASETS" : ["test_svs"],
-    "TOOLS" :["ulysses"],
+	"TOOLS" :["ulysses"],
 	"INBASE" : "/proj/b2013072/private/svest_evaluation/data/",
 	"OUTBASE" : "/proj/b2013072/private/svest_evaluation/output/",
 	"PYTHON2" : "python2.7",
