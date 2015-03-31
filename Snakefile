@@ -4,7 +4,7 @@ Submit this job on uppmax as:
     snakemake --debug --keep-going -j 999 --cluster "sbatch -A {params.account} -p {params.partition} -n {params.n}  -t {params.runtime} -C {params.memsize} -J {params.jobname} --mail-type={params.mail_type} --mail-user={params.mail}"
 """
 configfile: "config_uppmax.json"
-ULYSSES_VERSION = str(os.path.getmtime(config["ulysses"]["path"]))
+ULYSSES_VERSION = str(os.path.getmtime(config["ulysses_rules"]["path"]))
 # SVEST_VERSION = str(os.path.getmtime(config["optimal_k_rules"]["path"]))
 
 
