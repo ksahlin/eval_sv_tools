@@ -85,7 +85,7 @@ rule ULYSSES:
             shell("{python} {path}./Ulysses.py -out {params.prefix}_{n} -vcf TRUE -n {n} >> {log} 2>&1 ")
             shell("mv {params.prefix}_{n}.vcf  {base}{wildcards.dataset}/{wildcards.tool}_{n}.vcf")
 
-        shell("{base}{wildcards.dataset}/{wildcards.tool}_2.vcf {output}")
+        shell("cp {base}{wildcards.dataset}/{wildcards.tool}_2.vcf {output}")
     # /proj/b2013072/private/svest_evaluation/tools_src/ulysses-ulysses-v1.0/./ReadBAM.py /proj/b2013072/private/svest_evaluation/data/test_svs/mapped.bam -n 2 -out /tmp/Ulysses
     #     shell("[PATH]./ReadBAM.py /proj/b2013169/private/data/structural_variation/test_svs/mapped.bam  -n 2 -out /tmp/Ulysses")
     #     shell("./Ulysses.py -vcf LIBNAME -typesv DEL -n 2")
