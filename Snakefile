@@ -62,7 +62,7 @@ rule all:
 
 rule ULYSSES:
     input: config["INBASE"]+"{dataset}/mapped.bam"
-    output: expand(config["OUTBASE"]+"{dataset}/{tool}_{n}.vcf", n=config["ulysses_rules"]["n"])
+    output: config["OUTBASE"]+"{dataset}/{tool}.vcf" #expand(config["OUTBASE"]+"{dataset}/{tool}_{n}.vcf", n=config["ulysses_rules"]["n"])
     params: 
         runtime="15:00",
         memsize = "mem128GB",
@@ -83,6 +83,8 @@ rule ULYSSES:
             shell("[PATH]./ReadBAM.py {input.config} -n {n} -out {params.prefix}_{n}")
             shell("{path}./Ulysses.py -out {params.prefix}_{n} -vcf TRUE -n {n} ")
             shell("mv {params.prefix}_{n}.vcf  {base}{dataset}/{tool}_{n}.vcf")
+
+        shell("{base}{dataset}/{tool}_2.vcf {output}")
     # /proj/b2013072/private/svest_evaluation/tools_src/ulysses-ulysses-v1.0/./ReadBAM.py /proj/b2013072/private/svest_evaluation/data/test_svs/mapped.bam -n 2 -out /tmp/Ulysses
     #     shell("[PATH]./ReadBAM.py /proj/b2013169/private/data/structural_variation/test_svs/mapped.bam  -n 2 -out /tmp/Ulysses")
     #     shell("./Ulysses.py -vcf LIBNAME -typesv DEL -n 2")
