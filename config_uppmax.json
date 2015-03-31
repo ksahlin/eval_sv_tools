@@ -23,6 +23,6 @@
                         }
     },
 
-	"LOAD_PYTHON_ENV" : "pyenv global 2.7.6 system 3.4.1",
+	"LOAD_PYTHON_ENV" : "pyenv global 2.7.6 system 3.4.1"
 
 }
